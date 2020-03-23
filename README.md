@@ -66,3 +66,65 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+## Development Steps ###
+
+Tell git to use a LF end of line (EOL) character so that EOL war is ended.
+I do this so GitHub can stop converting end of line characters, and I use editors that behave properly.
+This is a choice that dev teams can make for themselves if desired.
+
+```
+git config --global core.autocrlf false
+```
+
+### Create
+```
+npm create-react-app sudoku
+
+# Add the .editorconfig file
+# Add components library
+npm install @material-ui/core --save
+npm install typeface-roboto --save
+npm install @material-ui/icons --save
+
+# Add to index.js
+import 'typeface-roboto';
+```
+
+### Remove unused code
+* In index.js remove serviceWorker references
+* In index.css remove unused styles
+* in App.js remove all but the outer div
+* In App.js remove all unused imports
+* In App.css remove unused styles
+
+### Add Components
+
+```
+cd src
+mkdir components
+
+# Add routing for menu items
+npm install react-router-dom --save
+```
+
+* Add file apptoolbar.js (see it for details)
+* In App.js add
+```
+import AppToolBar from './components/apptoolbar';`
+...
+<AppToolBar />
+```
+
+# GitHub Pages Deployment
+
+```
+npm install gh-pages --save-dev
+
+# Edit package.json top level
+"homepage": "http://{user}.github.io/{project}"
+
+# Now add to the scripts section
+"predeploy": "npm run build",
+"deploy": "gh-pages -d build"
+```
